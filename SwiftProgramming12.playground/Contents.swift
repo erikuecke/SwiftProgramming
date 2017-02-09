@@ -110,7 +110,7 @@ if let theName = middleName {
 
 func greetByMiddleName(fromFullName name: (first: String, middle: String?, last: String)) {
     
-    guard let middleName = name.middle else {
+    guard let middleName = name.middle, (name.middle?.characters.count)! < 4 else {
         print("Hey There")
         return
     }
@@ -121,3 +121,22 @@ greetByMiddleName(fromFullName: ("Matt", "Danger", "Mathais"))
 // Function Types - ([Int]) -> ([Int], [Int])
 let evenOddFunction: ([Int]) -> ([Int], [Int]) = sortedEvenOddNumbers
 evenOddFunction([1, 2, 3, 4, 5, 6])
+
+// Silver challenge
+
+let theGroceries = ["green beans", "milk", "black beans", "pinto beans", "apples"]
+
+func siftBeans(fromGrocerList groceries: [String]) -> (beans: [String], otherGroceries: [String]) {
+    var beans = [String]()
+    var otherGroceries = [String]()
+    for item in groceries {
+        if item.lowercased().contains("beans") {
+            beans.append(item)
+        } else {
+            otherGroceries.append(item)
+        }
+    }
+    return (beans, otherGroceries)
+}
+
+siftBeans(fromGrocerList: theGroceries)
